@@ -1,0 +1,8 @@
+[
+  // Insert knitr chunk
+  { "keys": ["super+alt+c"], "command": "insert_snippet", "args": {"name": "Packages/KnitrSublime/knitr-chunk.sublime-snippet"}, "context":
+    [
+      { "operand": "text.tex.latex.knitr", "operator": "equal", "match_all": true, "key": "selector" }
+    ]
+  }
+]

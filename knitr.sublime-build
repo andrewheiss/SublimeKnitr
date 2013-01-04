@@ -1,0 +1,6 @@
+{
+	"cmd": ["bash", "-c", "Rscript -e \"library(knitr); knit('${file_name}')\" && pdflatex '${file_base_name}.tex' -interaction=nonstopmode -synctex=1 %S -f -pdf && skim '${file_base_name}.pdf'"], 
+    "path": "$PATH:/usr/texbin:/usr/local/bin", 
+    "selector": "text.tex.latex.knitr","shell":false,
+    "file_regex": "^(...*?):([0-9]+): ([0-9]*)([^\\.]+)"
+}
