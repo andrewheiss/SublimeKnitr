@@ -1,13 +1,66 @@
 # KnitrSublime
 
-This package provides *very rudimentary* LaTeX support for `knitr` in Sublime Text 2. It comes with:
+This package provides basic LaTeX support for `knitr` in Sublime Text 2. It comes with:
 
 * A language definition for `knitr` files
-* A build system (only works with Skim on OS X; lacks ability to sync with Skim)
 * A snippet for inserting a `knitr` chunk (currently bound to ⌥⌘C, but configurable)
+* A disabled-by-default build system that only works with Skim on OS X; lacks ability to sync with Skim (only included for legacy purposes)
+* Instructions on how to patch the LaTeXTools package to knit and typeset `.Rnw` files (use instead of the disabled build system)
+
+
+## Patch for LaTeXTools
+
+Some advantages to using LaTeXTools is that you can specify any PDF viewer, change the TeX engine, and sync the PDF with the text editor. If you want to use the highly robust LaTeXTools plugin, you need to patch two files to make the standard LaTeXTools build system knit and typest the `.Rnw` file.
+
+Make the following changes (*huge* thanks to [Heberto del Rio](http://stackoverflow.com/a/15017303/120898) for this!):
+
+### File 1: `Packages/LaTeXTools/makePDF.py`
+
+Find this:
+
+	if self.tex_ext.upper() != ".TEX":
+		sublime.error_message("%s is not a TeX source file: cannot compile." % (os.path.basename(view.file_name()),))
+		return
+
+And replace with this:
+
+	if (self.tex_ext.upper() != ".TEX") and (self.tex_ext.upper() != ".RNW"):
+		sublime.error_message("%s is not a TeX or Rnw source file: cannot compile." % (os.path.basename(view.file_name()),))
+		return
+
+Then find this:
+
+	os.chdir(tex_dir)
+	CmdThread(self).start()
+	print threading.active_count()
+
+And replace with this:
+
+	os.chdir(tex_dir)
+	if self.tex_ext.upper() == ".RNW":
+		# Run Rscript -e "library(knitr); knit('" + self.file_name + "')"
+		os.system("Rscript -e \"library(knitr); knit('"+ self.file_name +"')\"")
+		self.file_name = self.tex_base + ".tex"
+		self.tex_ext = ".tex"
+	CmdThread(self).start()
+	print threading.active_count()
+
+(If you want to use `Sweave` instead of `knitr`, change the `Rscript` command accordingly.)
+
+### File 2: `Packages/LaTeXTools/jumpToPDF.py`
+
+Find this:
+
+	if texExt.upper() != ".TEX":
+		sublime.error_message("%s is not a TeX source file: cannot jump." % (os.path.basename(view.fileName()),))
+		return
+
+And replace with this:
+
+	if (texExt.upper() != ".TEX") and (texExt.upper() != ".RNW"):
+		sublime.error_message("%s is not a TeX or Rnw source file: cannot jump." % (os.path.basename(view.fileName()),))
+		return
 
 ## To do
-
-Ideally, for the sake of cross-platformness and robustness, the build system for LaTeX should be handled by the LaTeXTools package, which is far more mature than my simple build-and-force-open-in-Skim system (e.g. you can specify any PDF viewer, change the TeX engine, sync the PDF with the text editor, etc.). However, [I have yet to find a good way](http://stackoverflow.com/questions/14152004/access-a-build-system-from-another-build-system-in-sublime-text-2) to call a build system from inside another build system (that is, call the LaTeXTools build system from this one after running `knitr`). 
 
 This should maybe eventually be merged with other `knitr`-related packages like [knitr_reports](https://github.com/nachocab/knitr_reports) to make a comprehensive Sublime Text plugin that can handle Markdown, LaTeX, and HTML.
