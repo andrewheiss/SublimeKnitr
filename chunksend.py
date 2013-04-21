@@ -99,18 +99,3 @@ class PrevChunkCommand(sublime_plugin.TextCommand):
             print "start of file reached with no more chunks"
 
             return
-        
-class NameChunkCommand(sublime_plugin.TextCommand):
-    def run(self,edit):
-        names=[]
-        full_lines = self.view.find_all('<<(.+?),.*?>>=')
-
-        for i in full_lines:
-           print self.view.substr(i)
-           names.append(re.sub(r'<<(.+?),.*?>>=',r'\1',self.view.substr(i)))
-
-        for i in names:
-            print i
-        #from here: put names into menu for selection
-
-
