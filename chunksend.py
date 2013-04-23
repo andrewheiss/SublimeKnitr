@@ -17,7 +17,7 @@ class SendChunkCommand(sublime_plugin.TextCommand):
             # following two lines help with debugging
             #print sel.a, sel.b
             #print sel.__class__
-            cur_chunk.append(sublime.Region(sel.a+1,sel.b-1))
+            cur_chunk.append(sublime.Region(sel.a,sel.b-1))
       #  else:
           #  print "not", sel.a, sel.b
 
