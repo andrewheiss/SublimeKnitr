@@ -12,9 +12,25 @@ This package provides basic LaTeX support for `knitr` in Sublime Text 2. It come
 
 Some advantages to using LaTeXTools is that you can specify any PDF viewer, change the TeX engine, and sync the PDF with the text editor. If you want to use the highly robust LaTeXTools plugin, you need to patch two files to make the standard LaTeXTools build system knit and typest the `.Rnw` file.
 
-Make the following changes (*huge* thanks to [Heberto del Rio](http://stackoverflow.com/a/15017303/120898) for this!):
+Make these three changes (*huge* thanks to [Heberto del Rio](http://stackoverflow.com/a/15017303/120898) for this!):
 
-### File 1: `Packages/LaTeXTools/makePDF.py`
+**Important:** *Copying and pasting code from GitHub can do unexpected things to indentation and can temporarily break LaTeXTools. Make sure the indentation is correct after pasting.*
+
+### File 1: `Packages/LaTeX/LaTeX.tmLanguage`
+
+Add `Rnw` to the list of accepted LaTeX file types, like so:
+
+	<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+	<plist version="1.0">
+	<dict>
+		<key>fileTypes</key>
+		<array>
+			<string>tex</string>
+			<string>Rnw</string>
+		</array>
+
+### File 2: `Packages/LaTeXTools/makePDF.py`
 
 Find this:
 
@@ -47,7 +63,7 @@ And replace with this:
 
 (If you want to use `Sweave` instead of `knitr`, change the `Rscript` command accordingly.)
 
-### File 2: `Packages/LaTeXTools/jumpToPDF.py`
+### File 3: `Packages/LaTeXTools/jumpToPDF.py`
 
 Find this:
 
@@ -60,6 +76,7 @@ And replace with this:
 	if (texExt.upper() != ".TEX") and (texExt.upper() != ".RNW"):
 		sublime.error_message("%s is not a TeX or Rnw source file: cannot jump." % (os.path.basename(view.fileName()),))
 		return
+
 
 ## To do
 
