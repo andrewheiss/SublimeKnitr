@@ -1,0 +1,11 @@
+[
+{	"caption": "Send Chunk to R",
+	"command": "send_chunk"
+},
+{	"caption": "Move to Next Chunk",
+	"command": "next_chunk"
+},
+{	"caption": "Move to Previous Chunk",
+	"command": "prev_chunk"
+}
+]
