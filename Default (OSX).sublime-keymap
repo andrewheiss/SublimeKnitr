@@ -5,17 +5,23 @@
       { "operand": "text.tex.latex.knitr", "operator": "equal", "match_all": true, "key": "selector" }
     ]
   },
-// send current chunk to r
-  { "keys": ["super+1"], "command": "send_chunk" },
-//move between chunks
-{ "keys": ["super+shift+."], "command": "next_chunk","context":
+
+  // Send current chunk to R
+  { "keys": ["super+shift+ctrl+r"], "command": "send_chunk", "context":
+    [
+      { "operand": "source.r.embedded.knitr", "operator": "equal", "match_all":true, "key": "selector" }
+    ]
+  },
+  
+  // Move between chunks
+  { "keys": ["super+shift+."], "command": "next_chunk", "context":
     [
       { "operand": "text.tex.latex.knitr", "operator": "equal", "match_all": true, "key": "selector" }
     ]
- },
- { "keys": ["super+shift+,"], "command": "prev_chunk","context":
+  },
+  { "keys": ["super+shift+,"], "command": "prev_chunk", "context":
     [
       { "operand": "text.tex.latex.knitr", "operator": "equal", "match_all": true, "key": "selector" }
     ]
- }
+  }
 ]
