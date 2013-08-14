@@ -5,15 +5,15 @@ This package provides basic LaTeX support for `knitr` in Sublime Text 2/3. It co
 * A language definition for `knitr` files
 * The following commands (available via the command palette and as keyboard shortcut):
 	* Insert `knitr` chunk snippet: `super+alt+c`
-	* Send chunk to R GUI: `super+shift+alt+r` *(requires [Enhanced-R](https://github.com/randy3k/Enhanced-R)*
+	* Send chunk to R GUI: `super+shift+alt+r` *(requires [Enhanced-R](https://github.com/randy3k/Enhanced-R))*
 	* Move between chunks: `super+alt+,` and `super+alt+.`
 
 On Windows and Linux you have to use `ctrl` instead of the `super` key.
 
 
-## LaTeXing - LaTeX Plugin
+## Use with LaTeXing
 
-LaTeXing makes it is very easy to use Knitr, just enable the `knitr` setting and anjust the command in `knitr_command` if required. Now you are ready to use knitr within LaTeX.
+LaTeXing makes it is very easy to use Knitr, just enable the `knitr` setting and adjust the command in `knitr_command` if required. Now you are ready to use knitr within LaTeX.
 
 
 ## Patch for LaTeXTools
