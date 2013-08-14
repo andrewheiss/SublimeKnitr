@@ -5,13 +5,13 @@ import subprocess
 import string
 import re
 #import Rtools
- 
+
 class KnitrSendChunkCommand(sublime_plugin.TextCommand):
+    
   def run(self, view): # runs on command
-    mysel=self.view.find_all('(?<=>>=\n)((.*\n)+?)(?=@)')
+    mysel = self.view.find_all('(?<=>>=\n)((.*\n)+?)(?=@)')
     cur_chunk = []
     init_sel = int(self.view.sel()[0].a) # sets initial selection position - need to pull it out this way to prevent updating later. It also makes setting the cursor position later a little easier
-    print(init_sel.__class__, init_sel)
     for sel in mysel:
         if sel.a<= self.view.sel()[0].a <=sel.b:
             # following two lines help with debugging
@@ -35,24 +35,20 @@ class KnitrSendChunkCommand(sublime_plugin.TextCommand):
     # print(self.view.sel()[0].a # this line does the same, but uses the (for)
     # our purposes here) synonymous term 'a'
 
+    # Add selection
+    self.view.sel().add(cur_chunk[0])    
     
-
-    # print(cur_chunk.__class__)
-    # print(cur_chunk[0].a)
+    # Run command from Enhanced-R
+    self.view.run_command('r_send_select') 
     
-    self.view.sel().add(cur_chunk[0])
-    # print(self.view.scope_name(self.view.sel()[0].b))
-    self.view.run_command('send_selection') 
-    # this runs the send_selection command from r-tools. 
-    
-    print(init_sel.__class__, init_sel)
+    # Restore initial selection
     self.view.sel().subtract(cur_chunk[0])
     self.view.sel().add(sublime.Region(init_sel))
-    #self.view.show(init_sel[0].a)
-    return 
+    self.view.show(init_sel[0].a)
 
 
 class KnitrNextChunkCommand(sublime_plugin.TextCommand):
+
     def run(self,edit):
         init_sel = int(self.view.sel()[0].a)
         mysel=self.view.find_all('(?<=>>=\n)((.*\n)*?)(?=@)')
@@ -77,6 +73,7 @@ class KnitrNextChunkCommand(sublime_plugin.TextCommand):
         return
 
 class KnitrPrevChunkCommand(sublime_plugin.TextCommand):
+
     def run(self,edit):
         init_sel = int(self.view.sel()[0].a)
         mysel=self.view.find_all('(?<=>>=\n)((.*\n)*?)(?=@)')
