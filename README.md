@@ -6,7 +6,7 @@ This package provides basic LaTeX support for `knitr` in Sublime Text 2/3. It co
 * The following commands (available via the command palette and as keyboard shortcut):
 	* Insert `knitr` chunk snippet: `super+alt+c`
 	* Send chunk to R GUI: `super+shift+alt+r` *(requires [Enhanced-R](https://github.com/randy3k/Enhanced-R)*
-	* Move between chunks: `super+shift+,` and `super+shift+.`
+	* Move between chunks: `super+alt+,` and `super+alt+.`
 
 On Windows and Linux you have to use `ctrl` instead of the `super` key.
 

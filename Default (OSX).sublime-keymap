@@ -19,7 +19,7 @@
   
   // Move between chunks
   { 
-    "keys": ["super+shift+."], 
+    "keys": ["super+alt+."], 
     "command": "knitr_next_chunk", 
     "context": [
       { "operand": "text.tex.latex.knitr", "operator": "equal", "match_all": true, "key": "selector" }
@@ -27,7 +27,7 @@
   },
 
   { 
-    "keys": ["super+shift+,"], 
+    "keys": ["super+alt+,"], 
     "command": "knitr_prev_chunk", 
     "context": [
       { "operand": "text.tex.latex.knitr", "operator": "equal", "match_all": true, "key": "selector" }
