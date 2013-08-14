@@ -11,12 +11,12 @@ This package provides basic LaTeX support for `knitr` in Sublime Text 2/3. It co
 On Windows and Linux you have to use `ctrl` instead of the `super` key.
 
 
-## Use with LaTeXing
+## How to Use with LaTeXing
 
 LaTeXing makes it is very easy to use Knitr, just enable the `knitr` setting and adjust the command in `knitr_command` if required. Now you are ready to use knitr within LaTeX.
 
 
-## Patch for LaTeXTools
+## How to Use with LaTeXTools
 
 Some advantages to using LaTeXTools is that you can specify any PDF viewer, change the TeX engine, and sync the PDF with the text editor. If you want to use the highly robust LaTeXTools plugin, you need to patch two files to make the standard LaTeXTools build system knit and typest the `.Rnw` file.
 
