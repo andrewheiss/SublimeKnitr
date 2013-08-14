@@ -10,7 +10,7 @@
 
   // Send current chunk to R
   { 
-    "keys": ["ctrl+shift+ctrl+r"], 
+    "keys": ["ctrl+shift+alt+r"], 
     "command": "knitr_send_chunk", 
     "context": [
       { "operand": "source.r.embedded.knitr", "operator": "equal", "match_all":true, "key": "selector" }
