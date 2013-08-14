@@ -1,7 +1,7 @@
 [
   // Insert knitr chunk
   { 
-    "keys": ["super+alt+c"], 
+    "keys": ["ctrl+alt+c"], 
     "command": "insert_snippet", "args": {"name": "Packages/KnitrSublime/knitr-chunk.sublime-snippet"}, 
     "context": [
       { "operand": "text.tex.latex.knitr", "operator": "equal", "match_all": true, "key": "selector" }
@@ -10,7 +10,7 @@
 
   // Send current chunk to R
   { 
-    "keys": ["super+shift+ctrl+r"], 
+    "keys": ["ctrl+shift+alt+r"], 
     "command": "knitr_send_chunk", 
     "context": [
       { "operand": "source.r.embedded.knitr", "operator": "equal", "match_all":true, "key": "selector" }
@@ -19,7 +19,7 @@
   
   // Move between chunks
   { 
-    "keys": ["super+shift+."], 
+    "keys": ["ctrl+shift+."], 
     "command": "knitr_next_chunk", 
     "context": [
       { "operand": "text.tex.latex.knitr", "operator": "equal", "match_all": true, "key": "selector" }
@@ -27,7 +27,7 @@
   },
 
   { 
-    "keys": ["super+shift+,"], 
+    "keys": ["ctrl+shift+,"], 
     "command": "knitr_prev_chunk", 
     "context": [
       { "operand": "text.tex.latex.knitr", "operator": "equal", "match_all": true, "key": "selector" }
