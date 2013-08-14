@@ -9,19 +9,16 @@ import re
 class KnitrSendChunkCommand(sublime_plugin.TextCommand):
     
   def run(self, view): # runs on command
-    mysel = self.view.find_all('(?<=>>=\n)((.*\n)+?)(?=@)')
-    cur_chunk = []
-    init_sel = int(self.view.sel()[0].a) # sets initial selection position - need to pull it out this way to prevent updating later. It also makes setting the cursor position later a little easier
-    for sel in mysel:
-        if sel.a<= self.view.sel()[0].a <=sel.b:
-            # following two lines help with debugging
-            #print(sel.a, sel.b)
-            #print(sel.__class__)
-            cur_chunk.append(sublime.Region(sel.a,sel.b-1))
-      #  else:
-          #  print("not", sel.a, sel.b)
+    initial_selection = self.view.sel()[0]
+    # Find all chunks
+    for region in self.view.find_all('(?<=>>=\n)((.*\n)+?)(?=@)'):
+        if region.contains(initial_selection.a):
+            chunk_range = sublime.Region(region.a, region.b-1)
+            break
+    else:
+        chunk_range = None
 
-    # print("cur chunk is", cur_chunk)
+    # print("cur chunk is", chunk_range)
     # to capture the chunk as a string: 
     # self.view.substr(cur_chunk[0])
     # print(self.view.sel()[0].begin() )
@@ -35,17 +32,19 @@ class KnitrSendChunkCommand(sublime_plugin.TextCommand):
     # print(self.view.sel()[0].a # this line does the same, but uses the (for)
     # our purposes here) synonymous term 'a'
 
+    if not chunk_range:
+        return
+
     # Add selection
-    self.view.sel().add(cur_chunk[0])    
-    
+    self.view.sel().add(chunk_range)    
+
     # Run command from Enhanced-R
     self.view.run_command('r_send_select') 
     
     # Restore initial selection
-    self.view.sel().subtract(cur_chunk[0])
-    self.view.sel().add(sublime.Region(init_sel))
-    self.view.show(init_sel[0].a)
-
+    self.view.sel().subtract(chunk_range)
+    self.view.sel().add(initial_selection)
+    self.view.show(initial_selection.a)
 
 class KnitrNextChunkCommand(sublime_plugin.TextCommand):
 
