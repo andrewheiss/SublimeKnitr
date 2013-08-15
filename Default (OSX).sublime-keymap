@@ -16,6 +16,13 @@
       { "operand": "source.r.embedded.knitr", "operator": "equal", "match_all":true, "key": "selector" }
     ]
   },
+  { 
+    "keys": ["super+b"], 
+    "command": "knitr_send_chunk", 
+    "context": [
+      { "operand": "text.tex.latex.knitr source.r.embedded.knitr", "operator": "equal", "match_all":true, "key": "selector" }
+    ]
+  },
   
   // Move between chunks
   { 
