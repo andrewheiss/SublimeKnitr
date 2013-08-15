@@ -4,7 +4,6 @@ import os
 import subprocess
 import string
 import re
-#import Rtools
 
 class KnitrSendChunkCommand(sublime_plugin.TextCommand):
     
@@ -36,6 +35,7 @@ class KnitrSendChunkCommand(sublime_plugin.TextCommand):
     self.view.sel().subtract(chunk_range)
     self.view.sel().add(initial_selection)
     self.view.show(initial_selection.a)
+
 
 class KnitrNextChunkCommand(sublime_plugin.TextCommand):
 
