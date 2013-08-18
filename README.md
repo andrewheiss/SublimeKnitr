@@ -1,17 +1,22 @@
 # KnitrSublime
 
-This package provides basic LaTeX support for `knitr` in Sublime Text 2. It comes with:
+This package provides basic LaTeX support for `knitr` in Sublime Text 2/3. It comes with:
 
 * A language definition for `knitr` files
-* The following snippets (configurable in `sublime-keymap` file):
-	* Insert `knitr` chunk: `⌥⌘C`
-	* Send current chunk to R GUI: `⌘⇧^R` *(requires [R Tools](https://github.com/karthikram/Rtools); R 3.0 includes a single binary, so there is no need to call R64.app. Modify `Rtools.py` to run R instead of R64)*
-	* Move between chunks: `⌘⇧,` and `⌘⇧.`
-* A disabled-by-default build system that only works with Skim on OS X; lacks ability to sync with Skim (only included for legacy purposes)
-* Instructions on how to patch the LaTeXTools package to knit and typeset `.Rnw` files (use instead of the disabled build system)
+* The following commands (available via the command palette and as keyboard shortcut):
+	* Insert `knitr` chunk snippet: `super+alt+c`
+	* Send chunk to R GUI: `super+shift+alt+r` *(requires [Enhanced-R](https://github.com/randy3k/Enhanced-R))*
+	* Move between chunks: `super+alt+,` and `super+alt+.`
+
+On Windows and Linux you have to use `ctrl` instead of the `super` key.
 
 
-## Patch for LaTeXTools
+## How to Use with LaTeXing
+
+LaTeXing makes it is very easy to use Knitr, just enable the `knitr` setting and adjust the command in `knitr_command` if required. Now you are ready to use knitr within LaTeX.
+
+
+## How to Use with LaTeXTools
 
 Some advantages to using LaTeXTools is that you can specify any PDF viewer, change the TeX engine, and sync the PDF with the text editor. If you want to use the highly robust LaTeXTools plugin, you need to patch two files to make the standard LaTeXTools build system knit and typest the `.Rnw` file.
 
