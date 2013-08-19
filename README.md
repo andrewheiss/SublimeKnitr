@@ -1,30 +1,41 @@
-# KnitrSublime
+# Sublime knitr
 
-This package provides basic LaTeX support for `knitr` in Sublime Text 2/3. It comes with:
+This package provides basic LaTeX support for **knitr** in Sublime Text 2 and 3. It comes with:
 
 * A language definition for `knitr` files
-* The following commands (available via the command palette and as keyboard shortcut):
-	* Insert `knitr` chunk snippet: `super+alt+c`
-	* Send chunk to R GUI: `super+shift+alt+r` *(requires [Enhanced-R](https://github.com/randy3k/Enhanced-R))*
+* The following commands (available via the command palette and with keyboard shortcuts):
+	* Insert **knitr** chunk snippet: `super+alt+c`
 	* Move between chunks: `super+alt+,` and `super+alt+.`
-
-On Windows and Linux you have to use `ctrl` instead of the `super` key.
-
-
-## How to Use with LaTeXing
-
-LaTeXing makes it is very easy to use Knitr, just enable the `knitr` setting and adjust the command in `knitr_command` if required. Now you are ready to use knitr within LaTeX.
+	* Send chunk to R GUI: `super+b` *(requires [Enhanced-R](https://github.com/randy3k/Enhanced-R))*
+	
+By default, `ctrl` is used in place of `super` on Windows and Linux.
 
 
-## How to Use with LaTeXTools
+## Dependencies
 
-Some advantages to using LaTeXTools is that you can specify any PDF viewer, change the TeX engine, and sync the PDF with the text editor. If you want to use the highly robust LaTeXTools plugin, you need to patch two files to make the standard LaTeXTools build system knit and typest the `.Rnw` file.
+In order to use all the features of this package, you'll need to install two other packages. Both are easily installable via Package Control:
 
-Make these three changes (*huge* thanks to [Heberto del Rio](http://stackoverflow.com/a/15017303/120898) for this!):
+* [Enhanced-R](https://github.com/randy3k/Enhanced-R)
+* [LaTeXing](http://www.latexing.com/) or [LaTeXTools](https://github.com/SublimeText/LaTeXTools) (see patch below for LaTeXTools)
 
-**Important:** *Copying and pasting code from GitHub can do unexpected things to indentation and can temporarily break LaTeXTools. Make sure the indentation is correct after pasting.*
+The easiest way to use this plugin is to use [LaTeXing](http://www.latexing.com/), especially since development on LaTeXTools has slowed significantly. Simply enable the `knitr` setting and adjust the command in `knitr_command` if required. 
 
-### File 1: `Packages/LaTeX/LaTeX.tmLanguage`
+Alternatively, you can use this plugin with [LaTeXTools](https://github.com/SublimeText/LaTeXTools), with three manual patches, listed below. 
+
+
+## Roadmap and wish list
+
+* Include support for [R Markdown](http://www.rstudio.com/ide/docs/r_markdown)
+
+------------
+
+### Manual patch for LaTeXTools
+
+If you want to use the LaTeXTools plugin, you need to patch three files to make the standard LaTeXTools build system knit and typest the `.Rnw` file. Make these three changes (*huge* thanks to [Heberto del Rio](http://stackoverflow.com/a/15017303/120898) for this!):
+
+**Important:** *Copying and pasting code from GitHub can do unexpected things to indentation (replacing tabs with spaces) and can temporarily break LaTeXTools. Make sure the indentation is correct after pasting.*
+
+#### File 1: `Packages/LaTeX/LaTeX.tmLanguage`
 
 Add `Rnw` to the list of accepted LaTeX file types, like so:
 
@@ -38,7 +49,7 @@ Add `Rnw` to the list of accepted LaTeX file types, like so:
 			<string>Rnw</string>
 		</array>
 
-### File 2: `Packages/LaTeXTools/makePDF.py`
+#### File 2: `Packages/LaTeXTools/makePDF.py`
 
 Find this:
 
@@ -56,7 +67,7 @@ Then find this:
 
 	os.chdir(tex_dir)
 	CmdThread(self).start()
-	print threading.active_count()
+	print (threading.active_count())
 
 And replace with this:
 
@@ -67,11 +78,11 @@ And replace with this:
 		self.file_name = self.tex_base + ".tex"
 		self.tex_ext = ".tex"
 	CmdThread(self).start()
-	print threading.active_count()
+	print (threading.active_count())
 
 (If you want to use `Sweave` instead of `knitr`, change the `Rscript` command accordingly.)
 
-### File 3: `Packages/LaTeXTools/jumpToPDF.py`
+#### File 3: `Packages/LaTeXTools/jumpToPDF.py`
 
 Find this:
 
@@ -84,8 +95,3 @@ And replace with this:
 	if (texExt.upper() != ".TEX") and (texExt.upper() != ".RNW"):
 		sublime.error_message("%s is not a TeX or Rnw source file: cannot jump." % (os.path.basename(view.fileName()),))
 		return
-
-
-## To do
-
-This should maybe eventually be merged with other `knitr`-related packages like [knitr_reports](https://github.com/nachocab/knitr_reports) to make a comprehensive Sublime Text plugin that can handle Markdown, LaTeX, and HTML.
