@@ -25,7 +25,7 @@ Alternatively, you can use this plugin with [LaTeXTools](https://github.com/Subl
 
 ## Roadmap and wish list
 
-* Include support for [R Markdown](http://www.rstudio.com/ide/docs/r_markdown)
+* Include support for some (new?) flavor of [R Markdown](http://www.rstudio.com/ide/docs/r_markdown)
 
 ------------
 
