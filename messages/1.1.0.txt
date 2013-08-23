@@ -1,0 +1,11 @@
+-------------------
+Sublime knitr 1.1.0
+-------------------
+
+Exciting news! The plugin now has basic support for R Markdown (`.Rmd`) files.  
+
+New Features
+ * Insert Markdown chunks with the same keyboard shortcut (`super/ctrl+alt+c`)
+
+ * Build an `.Rmd` file to create a knitted `.md` file that you can use anywhere else 
+   (i.e. with Pandoc, Marked, Jekyll, etc.)

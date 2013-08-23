@@ -10,10 +10,10 @@ Thanks for installing the Sublime knitr plugin!
 Make sure you install the Enhanced-R and LaTeXing (or LaTeXTools) packages
 before using this plugin. All are available via Package Control.
 
-Instructions for getting LaTeXing and LaTeXTools to work are in the README
-file. You can see that file
+Instructions for (1) getting LaTeXing and/or LaTeXTools to work and 
+(2) working with R Markdown files are in the README file, accessible:
 
 1. at the GitHub page (https://github.com/SublimeText/LaTeXTools), or
-2. by using the "Browse Packages..." command in Sublime Text
+2. by using the "Browse Packages..." command in Sublime Text.
 
 ## -------------------------------------------------------------------- ##
