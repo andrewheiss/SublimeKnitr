@@ -1,8 +1,9 @@
 # Sublime knitr
 
-This package provides basic LaTeX support for **knitr** in Sublime Text 2 and 3. It comes with:
+This package provides [**knitr**](http://yihui.name/knitr/) Markdown and LaTeX support in Sublime Text 2 and 3. It comes with:
 
-* A language definition for `knitr` files
+* Language definitions for **knitr** LaTeX and Markdown files
+* A build system for R Markdown files.
 * The following commands (available via the command palette and with keyboard shortcuts):
 	* Insert **knitr** chunk snippet: `super+alt+c`
 	* Move between chunks: `super+alt+,` and `super+alt+.`
@@ -23,9 +24,21 @@ The easiest way to use this plugin is to use [LaTeXing](http://www.latexing.com/
 Alternatively, you can use this plugin with [LaTeXTools](https://github.com/SublimeText/LaTeXTools), with three manual patches, listed below. 
 
 
+## Building R Markdown files
+
+Building an `.Rmd` file creates an `.md` file in the same directory. It's up to you to use that file elsewhere (i.e. use Pandoc to convert it `.html`, `.docx`, `.rtf`, or even `.tex` if you feel like being extra circuitous).
+
+I typically build the `.Rmd` file once, open the resulting `.md` file in [Marked](http://markedapp.com/), and then leave it open in Marked as I make further changes and newer builds. 
+
+Alternatively, you can force the build system to open the resulting `.md` file in the default program for Markdown files by changing the `"cmd":` line in `knitr-Markdown.sublime-build` to:
+
+		"cmd": [ "Rscript -e \"library(knitr); knit('$file_name')\"; open $file_base_name.md" ],
+
+
 ## Roadmap and wish list
 
-* Include support for some (new?) flavor of [R Markdown](http://www.rstudio.com/ide/docs/r_markdown)
+* Better Markdown syntax highlighting, including Multimarkdown and Pandoc extras like footnotes, tables, and citations.
+* Create commands for Pandoc conversion from R Markdown to other formats? (or maybe just use actual Pandoc packages for that). 
 
 ------------
 
