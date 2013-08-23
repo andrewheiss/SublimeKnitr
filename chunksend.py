@@ -9,14 +9,24 @@ class KnitrSendChunkCommand(sublime_plugin.TextCommand):
     
   def run(self, view): # runs on command
     initial_selection = self.view.sel()[0]
-    
-    # Find chunk
-    for region in self.view.find_all('(?<=>>=\n)((.*\n)+?)(?=@)'):
-        if region.contains(initial_selection.a):
-            chunk_range = sublime.Region(region.a, region.b-1)
-            break
-    else:
-        chunk_range = None
+
+    knitr_language = (self.view.settings().get('syntax'))
+
+    if 'Rnw' in knitr_language:
+        for region in self.view.find_all('(?<=>>=\n)((.*\n)+?)(?=@)'):
+            if region.contains(initial_selection.a):
+                chunk_range = sublime.Region(region.a, region.b-1)
+                break
+        else:
+            chunk_range = None
+
+    if 'Markdown' in knitr_language:
+        for region in self.view.find_all('(?<=\}\n)((.*\n)+?)(?=```)'):
+            if region.contains(initial_selection.a):
+                chunk_range = sublime.Region(region.a, region.b-1)
+                break
+        else:
+            chunk_range = None
 
     # print("chunk is", chunk_range)
 
@@ -42,13 +52,24 @@ class KnitrNextChunkCommand(sublime_plugin.TextCommand):
     def run(self,edit):
         initial_selection = self.view.sel()[0]
 
+        knitr_language = (self.view.settings().get('syntax'))
+
         # Find next chunk
-        for region in self.view.find_all('(?<=>>=\n)((.*\n)+?)(?=@)'):
-            if region.b > initial_selection.a < region.a:
-                chunk_range = region
-                break
-        else:
-            chunk_range = None
+        if 'Rnw' in knitr_language:
+            for region in self.view.find_all('(?<=>>=\n)((.*\n)+?)(?=@)'):
+                if region.b > initial_selection.a < region.a:
+                    chunk_range = region
+                    break
+            else:
+                chunk_range = None
+
+        if 'Markdown' in knitr_language:
+            for region in self.view.find_all('(?<=\}\n)((.*\n)+?)(?=```)'):
+                if region.b > initial_selection.a < region.a:
+                    chunk_range = region
+                    break
+            else:
+                chunk_range = None
 
         if chunk_range:
             self.view.sel().clear()
@@ -63,13 +84,25 @@ class KnitrPrevChunkCommand(sublime_plugin.TextCommand):
     def run(self,edit):
         initial_selection = self.view.sel()[0]
 
+        knitr_language = (self.view.settings().get('syntax'))
+
         # Find previous chunk
-        for region in self.view.find_all('(?<=>>=\n)((.*\n)+?)(?=@)')[::-1]:
-            if region.b < initial_selection.a > region.a:
-                chunk_range = region
-                break
-        else:
-            chunk_range = None
+        if 'Rnw' in knitr_language:
+            for region in self.view.find_all('(?<=>>=\n)((.*\n)+?)(?=@)')[::-1]:
+                if region.b < initial_selection.a > region.a:
+                    chunk_range = region
+                    break
+            else:
+                chunk_range = None
+
+        if 'Markdown' in knitr_language:
+            for region in self.view.find_all('(?<=\}\n)((.*\n)+?)(?=```)')[::-1]:
+                if region.b < initial_selection.a > region.a:
+                    chunk_range = region
+                    break
+            else:
+                chunk_range = None
+
                 
         if chunk_range:
             self.view.sel().clear()
