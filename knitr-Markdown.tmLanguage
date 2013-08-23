@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>Rmd</string>
+	</array>
+	<key>name</key>
+	<string>knitr (Markdown)</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>begin</key>
+			<string>^(`{3,}\s*\{r)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.parameters.begin.knitr</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Capture 
+				1. ```{r to start the parameters chunk.; 
+				2. the closing } (unfortunately it captures all }s since limiting it to lines that begin with ```{r seems to require a wildcard inside a lookbehind assertion, which doesn't work, and 
+				3. the different variables inside the parameters.
+			</string>
+			<key>end</key>
+			<string>(\})</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.parameters.end.knitr</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.block.parameters.knitr</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.other.name-of-parameter.knitr</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.key-value.knitr</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>constant.language.boolean.knitr</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>constant.language.results.knitr</string>
+						</dict>
+						<key>5</key>
+						<dict>
+							<key>name</key>
+							<string>string.unquoted.label.knitr</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(\w+)(=)(?:(true|false)|(verbatim|tex|hide)|([\w.]+))</string>
+					<key>name</key>
+					<string>meta.parameter.knitr</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>[\w.]+</string>
+					<key>name</key>
+					<string>string.unquoted.label.knitr</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>,</string>
+					<key>name</key>
+					<string>punctuation.separator.parameters.knitr</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(?&lt;=\})(.*)(\n)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>invalid.illegal.knitr</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.embedded.begin.knitr</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Capture 
+				1. the newline *after* the closing brace of the parameters section, 
+				2. ``` to end the chunk, and 
+				3. disallow spaces before the initial ```.
+
+				I originally commented out stuff after } and ``` (with comment.line.other.knitr), but characters there actually interfere with sending the chunk to R, so now they are marked as errors.
+			</string>
+			<key>contentName</key>
+			<string>source.r.embedded.knitr</string>
+			<key>end</key>
+			<string>^(`{3,}\s*)(.*)$</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.embedded.end.knitr</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>invalid.illegal.knitr</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.block.code.knitr</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>^\s+`{3,}.*\n?</string>
+					<key>name</key>
+					<string>invalid.illegal.knitr</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>source.r</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>No spaces allowed before the ending ```.</string>
+			<key>match</key>
+			<string>^\s+`{3,}.*\n?</string>
+			<key>name</key>
+			<string>invalid.illegal.knitr</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^(% .*)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>string.unquoted.multimarkdown</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>^$|^(?=[A-Za-z0-9]+:)</string>
+			<key>name</key>
+			<string>meta.header.pandoc.knitr</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>comment</key>
+					<string>The reason for not setting scopeName = "string.unquoted" (for the parent rule) is that we do not want newlines to be marked as string.unquoted. 
+
+					Also, you can use title.meta.header.pandoc.knitr as a scope name for the beginCaptures section above for special title highlighting.</string>
+					<key>match</key>
+					<string>.+</string>
+					<key>name</key>
+					<string>string.unquoted.multimarkdown</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Import any other Markdown syntaxes.</string>
+			<key>include</key>
+			<string>text.html.markdown</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>text.html.markdown.knitr</string>
+	<key>uuid</key>
+	<string>96695da4-0e45-45a0-9c77-1b82941531d6</string>
+</dict>
+</plist>

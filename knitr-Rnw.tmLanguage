@@ -12,7 +12,7 @@
 	<key>keyEquivalent</key>
 	<string>^~S</string>
 	<key>name</key>
-	<string>knitr</string>
+	<string>knitr (Rnw)</string>
 	<key>patterns</key>
 	<array>
 		<dict>
@@ -101,7 +101,7 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>comment.line.other.knitr</string>
+					<string>invalid.illegal.knitr</string>
 				</dict>
 			</dict>
 			<key>contentName</key>

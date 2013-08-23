@@ -1,44 +1,45 @@
 [
-  // Insert knitr chunk
+  // Insert knitr Rnw chunk
   { 
     "keys": ["ctrl+alt+c"], 
-    "command": "insert_snippet", "args": {"name": "Packages/KnitrSublime/knitr-chunk.sublime-snippet"}, 
+    "command": "insert_snippet", "args": {"name": "Packages/SublimeKnitr/knitr-rnw-chunk.sublime-snippet"}, 
     "context": [
       { "operand": "text.tex.latex.knitr", "operator": "equal", "match_all": true, "key": "selector" }
     ]
   },
 
-  // Send current chunk to R
+  // Insert knitr Markdown chunk
   { 
-    "keys": ["ctrl+shift+alt+r"], 
-    "command": "knitr_send_chunk", 
+    "keys": ["ctrl+alt+c"], 
+    "command": "insert_snippet", "args": {"name": "Packages/SublimeKnitr/knitr-md-chunk.sublime-snippet"}, 
     "context": [
-      { "operand": "source.r.embedded.knitr", "operator": "equal", "match_all":true, "key": "selector" }
+      { "operand": "text.html.markdown.knitr", "operator": "equal", "match_all": true, "key": "selector" }
     ]
   },
+
+  // Send current Rnw chunk to R
   { 
     "keys": ["ctrl+b"], 
     "command": "knitr_send_chunk", 
     "context": [
-      { "operand": "text.tex.latex.knitr source.r.embedded.knitr", "operator": "equal", "match_all":true, "key": "selector" }
+      { "operand": "text.tex.latex.knitr source.r.embedded.knitr, text.html.markdown.knitr source.r.embedded.knitr", "operator": "equal", "match_all":true, "key": "selector" }
     ]
   },
-
   
   // Move between chunks
   { 
     "keys": ["ctrl+alt+."], 
     "command": "knitr_next_chunk", 
     "context": [
-      { "operand": "text.tex.latex.knitr", "operator": "equal", "match_all": true, "key": "selector" }
+      { "operand": "text.tex.latex.knitr, text.html.markdown.knitr", "operator": "equal", "match_all": true, "key": "selector" }
     ]
   },
-
   { 
     "keys": ["ctrl+alt+,"], 
     "command": "knitr_prev_chunk", 
     "context": [
-      { "operand": "text.tex.latex.knitr", "operator": "equal", "match_all": true, "key": "selector" }
+      { "operand": "text.tex.latex.knitr, text.html.markdown.knitr", "operator": "equal", "match_all": true, "key": "selector" }
     ]
   }
 ]
+
