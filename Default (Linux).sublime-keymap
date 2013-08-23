@@ -2,7 +2,7 @@
   // Insert knitr Rnw chunk
   { 
     "keys": ["ctrl+alt+c"], 
-    "command": "insert_snippet", "args": {"name": "Packages/SublimeKnitr/knitr-rnw-chunk.sublime-snippet"}, 
+    "command": "insert_snippet", "args": {"name": "Packages/knitr/knitr-rnw-chunk.sublime-snippet"}, 
     "context": [
       { "operand": "text.tex.latex.knitr", "operator": "equal", "match_all": true, "key": "selector" }
     ]
@@ -11,7 +11,7 @@
   // Insert knitr Markdown chunk
   { 
     "keys": ["ctrl+alt+c"], 
-    "command": "insert_snippet", "args": {"name": "Packages/SublimeKnitr/knitr-md-chunk.sublime-snippet"}, 
+    "command": "insert_snippet", "args": {"name": "Packages/knitr/knitr-md-chunk.sublime-snippet"}, 
     "context": [
       { "operand": "text.html.markdown.knitr", "operator": "equal", "match_all": true, "key": "selector" }
     ]

@@ -1,0 +1,6 @@
+-------------------
+Sublime knitr 1.1.1
+-------------------
+
+Fixed:
+  * There was a typo in the keymap files that prevented the snippets from working. Those work now :)
