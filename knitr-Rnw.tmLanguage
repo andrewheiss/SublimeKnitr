@@ -4,10 +4,9 @@
 <dict>
 	<key>fileTypes</key>
 	<array>
-		<string>Rnw</string>
-		<string>Snw</string>
 		<string>rnw</string>
 		<string>snw</string>
+		<string>rtex</string>
 	</array>
 	<key>keyEquivalent</key>
 	<string>^~S</string>
