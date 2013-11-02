@@ -1,7 +1,7 @@
 # Sublime knitr
 
-* Version: 1.1.3 
-* Date: September 12, 2013
+* Version: 1.1.4 
+* Date: November 2, 2013
 
 This package provides [**knitr**](http://yihui.name/knitr/) Markdown and LaTeX support in Sublime Text 2 and 3. It comes with:
 
