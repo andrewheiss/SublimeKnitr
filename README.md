@@ -1,7 +1,7 @@
 # Sublime knitr
 
-* Version: 1.2.0 
-* Date: July 1, 2014
+* Version: 1.2.1
+* Date: July 2, 2014
 
 This package provides [**knitr**](http://yihui.name/knitr/) Markdown and LaTeX support in Sublime Text 2 and 3. It comes with:
 
@@ -38,6 +38,15 @@ I typically build the `.Rmd` file once, open the resulting `.md` file in [Marked
 Alternatively, you can force the build system to open the resulting `.md` file in the default program for Markdown files by changing the `"cmd":` line in `knitr-Markdown.sublime-build` to:
 
 		"cmd": [ "Rscript -e \"library(knitr); knit('$file_name')\"; open $file_base_name.md" ],
+
+
+## Unicode and other encoding issues
+
+Working with non-ASCII characters in plots is a little tricky because of how LaTeX and R differently support Unicode. Here's are some general guidelines for fixing character encoding issues:
+
+1. Add `LANG=en_US.UTF-8` to `~/.Renviron` (create this file if needed). This will ensure that R runs with Unicode support whenver it opens.
+2. Add a separate chunk near the beginning of your document with this: `pdf.options(encoding = '<encoding>')`, where `encoding` is any of those listed in the output of this command: `list.files(system.file('enc', package = 'grDevices'))`. Choose an encoding that encompasses all the characters you're using in your plots.
+3. If using `.Rnw` and LaTeX, ensure that `\usepackage[utf8]{inputenc}` is in your preamble.
 
 
 ## Roadmap and wish list

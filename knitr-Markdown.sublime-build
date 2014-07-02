@@ -1,6 +1,7 @@
 {
   "selector": "text.html.markdown.knitr",
   "working_dir": "${project_path:${folder}}",
+  "env": { "LANG": "en_US.UTF-8" },
   "cmd": [ "Rscript -e \"library(knitr); knit('$file', output='$file_path/$file_base_name.md')\"" ],
   "shell": true,
 
@@ -9,7 +10,6 @@
     {
       "name": "Run",
       "working_dir": "$file_path",
-      "env": { "LANG": "en_US.UTF-8" },
       "shell_cmd": "Rscript -e \"rmarkdown::render(input = '$file')\""
     }
   ]
