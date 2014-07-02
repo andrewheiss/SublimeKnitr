@@ -1,0 +1,9 @@
+-------------------
+Sublime knitr 1.2.0
+-------------------
+
+Added: 
+  * Build variant that uses `rmarkdown::render()` to automatically create an HTML file in addition to the Markdown file (thanks @mmarascio!)
+
+Fixed:
+  * `.Rmd` files are now built using UTF-8 encoding.

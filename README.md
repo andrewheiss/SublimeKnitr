@@ -1,7 +1,7 @@
 # Sublime knitr
 
-* Version: 1.1.4 
-* Date: November 2, 2013
+* Version: 1.2.0 
+* Date: July 1, 2014
 
 This package provides [**knitr**](http://yihui.name/knitr/) Markdown and LaTeX support in Sublime Text 2 and 3. It comes with:
 
@@ -30,6 +30,8 @@ Alternatively, you can use this plugin with [LaTeXTools](https://github.com/Subl
 ## Building R Markdown files
 
 Building an `.Rmd` file creates an `.md` file in the same directory. It's up to you to use that file elsewhere (i.e. use Pandoc to convert it `.html`, `.docx`, `.rtf`, or even `.tex` if you feel like being extra circuitous).
+
+There is also a build variant that will create an HTML file from the knitted Markdown file. Use this with `super + shift + b`. 
 
 I typically build the `.Rmd` file once, open the resulting `.md` file in [Marked](http://markedapp.com/), and then leave it open in Marked as I make further changes and newer builds. 
 
