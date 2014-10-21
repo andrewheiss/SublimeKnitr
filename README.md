@@ -122,3 +122,26 @@ And replace with this:
 	if (texExt.upper() != ".TEX") and (texExt.upper() != ".RNW"):
 		sublime.error_message("%s is not a TeX or Rnw source file: cannot jump." % (os.path.basename(view.fileName()),))
 		return
+
+If you want to be able to use multiple files and to find your bib file, you'll also need to change the following files:
+#### File 4: `Packages/LaTeXTools/getTeXRoot.py`
+
+Find this:
+
+	mroot = re.match(r"%\s*!TEX\s+root *= *(.*(tex|TEX))\s*$",line)
+
+And replace with this:
+
+	mroot = re.match(r"%\s*!TEX\s+root *= *(.*(tex|rnw))\s*$",line, flags=re.IGNORECASE)
+
+#### File 5: `Packages/LaTeXTools/latex_cite_completions.py`
+
+Find this:
+
+	if src[-4:].lower() != ".tex":
+
+And replace with this:
+
+	if src[-4:].lower() not in [".tex",".rnw"]:
+
+    
