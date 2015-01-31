@@ -1,7 +1,7 @@
 # Sublime knitr
 
-* Version: 1.2.1
-* Date: July 2, 2014
+* Version: 1.2.2
+* Date: January 30, 2015
 
 This package provides [**knitr**](http://yihui.name/knitr/) Markdown and LaTeX support in Sublime Text 2 and 3. It comes with:
 
@@ -75,6 +75,8 @@ Add `Rnw` to the list of accepted LaTeX file types, like so:
 			<string>tex</string>
 			<string>Rnw</string>
 		</array>
+
+**Instructions for Sublime Text 3**: In ST3, default packages are hidden deep within ST itself and are difficult to access, let alone edit. However, you can still get to `LaTeX.tmLanguage` relatively easily if you install the [PackageResourceViewer plugin](https://github.com/skuroda/PackageResourceViewer). After installing it, run the "PackageResourceViewer: Open Resource:" command through the command pallete (command/ctrl + shift + p) and navigate to LaTeX.tmLanguage. After making changes, ST will save a copy of the file in a more accessible location (`Packages/LaTeX/LaTeX.tmLanguage`), overriding the default built-in file. 
 
 #### File 2: `Packages/LaTeXTools/makePDF.py`
 
