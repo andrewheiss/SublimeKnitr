@@ -94,20 +94,19 @@ And replace with this:
 
 Then find this:
 
-	os.chdir(tex_dir)
-	CmdThread(self).start()
-	print (threading.active_count())
+	# We should now be able to construct the builder object
+	self.builder = builder_class(self.file_name, self.output, builder_settings, platform_settings)
 
 And replace with this:
 
-	os.chdir(tex_dir)
 	if self.tex_ext.upper() == ".RNW":
 		# Run Rscript -e "library(knitr); knit('" + self.file_name + "')"
 		os.system("Rscript -e \"library(knitr); knit('"+ self.file_name +"')\"")
 		self.file_name = self.tex_base + ".tex"
 		self.tex_ext = ".tex"
-	CmdThread(self).start()
-	print (threading.active_count())
+
+	# We should now be able to construct the builder object
+	self.builder = builder_class(self.file_name, self.output, builder_settings, platform_settings)
 
 (If you want to use `Sweave` instead of `knitr`, change the `Rscript` command accordingly.)
 
@@ -125,8 +124,23 @@ And replace with this:
 		sublime.error_message("%s is not a TeX or Rnw source file: cannot jump." % (os.path.basename(view.fileName()),))
 		return
 
+#### File 4: `Packages/LaTeXTools/viewPDF.py`
+
+Find this:
+
+	if texExt.upper() != ".TEX":
+		sublime.error_message("%s is not a TeX source file: cannot view." % (os.path.basename(view.fileName()),))
+		return
+
+And replace with this:
+
+	if (texExt.upper() != ".TEX") and (texExt.upper() != ".RNW"):
+		sublime.error_message("%s is not a TeX or Rnw source file: cannot view." % (os.path.basename(view.fileName()),))
+		return
+
+
 If you want to be able to use multiple files and to find your bib file, you'll also need to change the following files:
-#### File 4: `Packages/LaTeXTools/getTeXRoot.py`
+#### File 5: `Packages/LaTeXTools/getTeXRoot.py`
 
 Find this:
 
@@ -136,7 +150,7 @@ And replace with this:
 
 	mroot = re.match(r"%\s*!TEX\s+root *= *(.*(tex|rnw))\s*$",line, flags=re.IGNORECASE)
 
-#### File 5: `Packages/LaTeXTools/latex_cite_completions.py`
+#### File 6: `Packages/LaTeXTools/latex_cite_completions.py`
 
 Find this:
 
