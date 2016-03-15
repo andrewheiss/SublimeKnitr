@@ -7,7 +7,7 @@ Thanks for installing the Sublime knitr plugin!
 
 ## --------------------------- IMPORTANT!!! --------------------------- ##
 
-Make sure you install the Enhanced-R and LaTeXing (or LaTeXTools) packages
+Make sure you install the R-Box and LaTeXing (or LaTeXTools) packages
 before using this plugin. All are available via Package Control.
 
 Instructions for (1) getting LaTeXing and/or LaTeXTools to work and 

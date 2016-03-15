@@ -10,7 +10,7 @@ This package provides [**knitr**](http://yihui.name/knitr/) Markdown and LaTeX s
 * The following commands (available via the command palette and with keyboard shortcuts):
 	* Insert **knitr** chunk snippet: `super+alt+c`
 	* Move between chunks: `super+alt+,` and `super+alt+.`
-	* Send chunk to R GUI: `super+b` *(requires [Enhanced-R](https://github.com/randy3k/Enhanced-R))*
+	* Send chunk to R GUI: `super+b` *(requires [R-Box](https://github.com/randy3k/R-Box))*
 	
 By default, `ctrl` is used in place of `super` on Windows and Linux.
 
@@ -19,7 +19,8 @@ By default, `ctrl` is used in place of `super` on Windows and Linux.
 
 In order to use all the features of this package, you'll need to install two other packages. Both are easily installable via Package Control:
 
-* [Enhanced-R](https://github.com/randy3k/Enhanced-R)
+* [R-Box](https://github.com/randy3k/R-Box)
+* [SendTextPlus](https://github.com/randy3k/SendTextPlus)
 * [LaTeXing](http://www.latexing.com/) or [LaTeXTools](https://github.com/SublimeText/LaTeXTools) (see patch below for LaTeXTools)
 
 The easiest way to use this plugin is to use [LaTeXing](http://www.latexing.com/), especially since development on LaTeXTools has slowed significantly. Simply enable the `knitr` setting and adjust the command in `knitr_command` if required. 
