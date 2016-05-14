@@ -16,7 +16,7 @@
 	<array>
 		<dict>
 			<key>begin</key>
-			<string>^(&lt;&lt;)</string>
+			<string>^\s+(&lt;&lt;)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -106,7 +106,7 @@
 			<key>contentName</key>
 			<string>source.r.embedded.knitr</string>
 			<key>end</key>
-			<string>^(@)(.*)$</string>
+			<string>^\s+(@)(.*)$</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
@@ -125,22 +125,10 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>match</key>
-					<string>^\s+@.*\n?</string>
-					<key>name</key>
-					<string>invalid.illegal.knitr</string>
-				</dict>
-				<dict>
 					<key>include</key>
 					<string>source.r</string>
 				</dict>
 			</array>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>^\s+&lt;&lt;.*\n?</string>
-			<key>name</key>
-			<string>invalid.illegal.knitr</string>
 		</dict>
 		<dict>
 			<key>begin</key>
