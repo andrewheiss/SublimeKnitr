@@ -16,7 +16,7 @@
 	<array>
 		<dict>
 			<key>begin</key>
-			<string>^\s+(&lt;&lt;)</string>
+			<string>^\s*(&lt;&lt;)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -106,7 +106,7 @@
 			<key>contentName</key>
 			<string>source.r.embedded.knitr</string>
 			<key>end</key>
-			<string>^\s+(@)(.*)$</string>
+			<string>^\s*(@)(.*)$</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
